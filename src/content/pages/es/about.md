@@ -4,11 +4,11 @@ seo:
   title: Sobre mi
   description: Conoce más sobre Alejandro Parra, un ingeniero especializado en plataformas y tecnologías en la nube, con pasión por la tecnología y la mejora continua.
   image:
-    src: '/avatar.png'
+    src: '/avatar.webp'
     alt: Una persona trabajando con tecnologías nativas de la nube
 ---
 
-![Alt text for image](/avatar.png)
+![Alt text for image](/avatar.webp)
 
 
 ## J Alejandro Rodriguez Parra - Ingeniero de Plataformas en Querétaro, México

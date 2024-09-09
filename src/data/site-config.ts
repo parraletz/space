@@ -43,8 +43,8 @@ const siteConfig: SiteConfig = {
   description:
     'Personal website of Alex Parra, a Cloud Architect, DevOps Engineer, and Full-Stack Developer.',
   image: {
-    src: '/dante-preview.jpg',
-    alt: 'Dante - Astro.js and Tailwind CSS theme'
+    src: '/avatar.webp',
+    alt: 'Alex Parra - Plaform Engineer'
   },
   headerNavLinks: [
     {
@@ -59,15 +59,16 @@ const siteConfig: SiteConfig = {
       text: 'Blog',
       href: '/blog'
     },
+
     {
-      text: 'Tags',
-      href: '/tags'
+      text: 'About',
+      href: '/about'
     }
   ],
   footerNavLinks: [
     {
-      text: 'About',
-      href: '/about'
+      text: 'Resume',
+      href: '/cv'
     },
     {
       text: 'Contact',
@@ -76,10 +77,6 @@ const siteConfig: SiteConfig = {
     {
       text: 'Terms',
       href: '/terms'
-    },
-    {
-      text: 'Download theme',
-      href: 'https://github.com/JustGoodUI/dante-astro-theme'
     }
   ],
   socialLinks: [

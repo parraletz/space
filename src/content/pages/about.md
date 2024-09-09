@@ -4,11 +4,11 @@ seo:
   title: About Me
   description: Learn more about Alejandro Parra, an experienced cloud and platform engineer with a passion for technology and continuous improvement.
   image:
-    src: '/avatar.png'
+    src: '/avatar.webp'
     alt: A person working on cloud-native technologies
 ---
 
-![Alt text for image](/avatar.png)
+![](/avatar.webp)
 
 
 ## J Alejandro Rodriguez Parra - Platform Engineer based in Queretaro, Mexico
