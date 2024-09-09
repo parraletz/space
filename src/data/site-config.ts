@@ -38,7 +38,7 @@ export type SiteConfig = {
 }
 
 const siteConfig: SiteConfig = {
-  title: 'Alex Parra - Plaform Engineer',
+  title: 'Alex Parra - Platform Engineer',
   subtitle: 'Cloud Architect, DevOps Engineer, and Full-Stack Developer',
   description:
     'Personal website of Alex Parra, a Cloud Architect, DevOps Engineer, and Full-Stack Developer.',
