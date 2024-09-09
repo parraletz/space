@@ -9,18 +9,18 @@ import BaseLayout from '../../../layouts/BaseLayout.astro'
 import {
   getAllTags,
   getPostsByTag,
-  sortItemsByDateDesc,
+  sortItemsByDateDesc
 } from '../../../utils/data-utils'
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const posts = (await getCollection('blog')).sort(sortItemsByDateDesc)
   const tags = getAllTags(posts)
 
-  return tags.flatMap((tag) => {
+  return tags.flatMap(tag => {
     const filteredPosts = getPostsByTag(posts, tag.slug)
     return paginate(filteredPosts, {
       params: { slug: tag.slug },
-      pageSize: siteConfig.postsPerPage || 4,
+      pageSize: siteConfig.postsPerPage || 4
     })
   })
 }
@@ -32,7 +32,7 @@ const blog = page.data
 const params = Astro.params
 const allPosts = await getCollection('blog')
 const allTags = getAllTags(allPosts)
-const currentTag = allTags.find((tag) => {
+const currentTag = allTags.find(tag => {
   return tag.slug === params.slug
 })
 ---
@@ -40,7 +40,7 @@ const currentTag = allTags.find((tag) => {
 <BaseLayout
   title={`Posts Tagged ${currentTag?.name}`}
   description={`Explore a curated collection of blog posts under ${currentTag?.name}`}
-  image={{ src: '/dante-preview.jpg', alt: 'The preview of the site' }}
+  image={{ src: '/', alt: 'The preview of the site' }}
   showHeader={false}
 >
   <h1
@@ -48,7 +48,7 @@ const currentTag = allTags.find((tag) => {
   >
     Posts Tagged "{currentTag?.name}"
   </h1>
-  {blog.map((post) => <PostPreview post={post} class='mb-10 sm:mb-12' />)}
+  {blog.map(post => <PostPreview post={post} class='mb-10 sm:mb-12' />)}
   <Pagination page={page} class='my-16 sm:my-24' />
   <Subscribe class='my-16 sm:my-24' />
 </BaseLayout>

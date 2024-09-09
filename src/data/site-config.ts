@@ -101,7 +101,7 @@ const siteConfig: SiteConfig = {
     title: 'Hi There!',
     text: '“Alejandro Parra is a specialist in DevOps and Cloud with strong experience in backend development using Python and TypeScript. Throughout his career, he has worked on building scalable infrastructures and automating workflows, enabling him to design robust solutions for cloud-native environments. His focus is on optimizing processes and modernizing applications through innovative technologies, always driven by the belief that ‘Res publica non dominetur’.”',
     image: {
-      src: '/heros.jpeg',
+      src: '/avatar.webp',
       alt: ''
     },
     actions: [
