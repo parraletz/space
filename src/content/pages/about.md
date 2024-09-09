@@ -34,9 +34,10 @@ Throughout my career, I’ve led cloud and platform teams, implemented DevOps st
 
 
 ## Certifications
-
+* Certified Kubernetes Administrator (CKA) -  Feb 2024 — Mar 2027
+* AWS Certified Developer Associate - May 2024 — May 2027
 * AWS Certified Solutions Architect - Professional (SAP)
-    December 2020 – December 2021
+    May 2024 – December 2027
 * AWS Certified Solutions Architect - Associate (SAA)
     2019 – 2019
 * Certified OpenStack Administrator (COA)

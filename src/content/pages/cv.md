@@ -24,14 +24,11 @@ Passionate about cloud and cloud-native technologies with over 10 years of exper
 - **Languages:** English, Spanish
 
 ## Certifications
-- **AWS Certified Solutions Architect - Professional (SAP)**  
-  December 2020 – December 2021
-- **AWS Certified Solutions Architect - Associate (SAA)**  
-  2019 – 2019
-- **Certified OpenStack Administrator (COA)**  
-  2017 – 2017
-- **ITIL Foundations 2011 v3**  
-  2013 – 2013
+- **AWS Certified Solutions Architect - Professional (SAP)** May 2024 – May  2027
+- **AWS Certified Developer Associate** May 2024 — May 2027
+- **AWS Certified Solutions Architect - Associate (SAA)**  2019 – 2019
+- **Certified OpenStack Administrator (COA)**  2017 – 2017
+- **ITIL Foundations 2011 v3**  2013 – 2013
 
 ## Employment History
 

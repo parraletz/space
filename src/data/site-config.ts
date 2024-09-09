@@ -44,7 +44,7 @@ const siteConfig: SiteConfig = {
     'Personal website of Alex Parra, a Cloud Architect, DevOps Engineer, and Full-Stack Developer.',
   image: {
     src: '/avatar.webp',
-    alt: 'Alex Parra - Plaform Engineer'
+    alt: 'Alex Parra - Platform Engineer'
   },
   headerNavLinks: [
     {
