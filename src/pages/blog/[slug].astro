@@ -7,6 +7,7 @@ import PostPreview from '../../components/PostPreview.astro'
 import Subscribe from '../../components/Subscribe.astro'
 import { sortItemsByDateDesc } from '../../utils/data-utils'
 import { slugify } from '../../utils/common-utils'
+import PostComments from '../../components/PostComments.astro'
 
 export async function getStaticPaths() {
   const posts = (await getCollection('blog')).sort(sortItemsByDateDesc)
@@ -16,8 +17,8 @@ export async function getStaticPaths() {
     props: {
       post,
       prevPost: index + 1 !== postCount ? posts[index + 1] : null,
-      nextPost: index !== 0 ? posts[index - 1] : null,
-    },
+      nextPost: index !== 0 ? posts[index - 1] : null
+    }
   }))
 }
 
@@ -70,7 +71,7 @@ const { Content } = await post.render()
       {
         tags.length > 0 && (
           <div class='flex flex-wrap gap-x-5 gap-y-1 text-sm'>
-            {tags.map((tag) => (
+            {tags.map(tag => (
               <a
                 class='text-main hover:underline'
                 href={`/tags/${slugify(tag)}`}
@@ -90,6 +91,7 @@ const { Content } = await post.render()
       >
     </div>
   </article>
+  <PostComments />
   {
     (prevPost || nextPost) && (
       <div class='my-16 sm:my-24'>
