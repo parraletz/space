@@ -6,10 +6,10 @@ const seoSchema = z.object({
   image: z
     .object({
       src: z.string(),
-      alt: z.string().optional(),
+      alt: z.string().optional()
     })
     .optional(),
-  pageType: z.enum(['website', 'article']).default('website'),
+  pageType: z.enum(['website', 'article']).default('website')
 })
 
 const blog = defineCollection({
@@ -21,14 +21,15 @@ const blog = defineCollection({
     isFeatured: z.boolean().default(false),
     tags: z.array(z.string()).default([]),
     seo: seoSchema.optional(),
-  }),
+    commentsEnabled: z.boolean().default(true)
+  })
 })
 
 const pages = defineCollection({
   schema: z.object({
     title: z.string(),
-    seo: seoSchema.optional(),
-  }),
+    seo: seoSchema.optional()
+  })
 })
 
 const projects = defineCollection({
@@ -37,8 +38,8 @@ const projects = defineCollection({
     description: z.string().optional(),
     publishDate: z.coerce.date(),
     isFeatured: z.boolean().default(false),
-    seo: seoSchema.optional(),
-  }),
+    seo: seoSchema.optional()
+  })
 })
 
 export const collections = { blog, pages, projects }

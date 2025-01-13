@@ -9,6 +9,7 @@ seo:
   image:
     src: '/post-3.webp'
     alt: Paz
+isFeatured: false
 ---
 
 ![](/post-3.webp)

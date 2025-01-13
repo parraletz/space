@@ -30,7 +30,15 @@ type Props = {
 
 const { href } = Astro.url
 const { post, prevPost, nextPost } = Astro.props
-const { title, publishDate, updatedDate, excerpt, tags = [], seo } = post.data
+const {
+  title,
+  publishDate,
+  updatedDate,
+  excerpt,
+  isFeatured,
+  tags = [],
+  seo
+} = post.data
 const { Content } = await post.render()
 ---
 
@@ -91,7 +99,9 @@ const { Content } = await post.render()
       >
     </div>
   </article>
-  <PostComments />
+
+  {isFeatured && <PostComments />}
+
   {
     (prevPost || nextPost) && (
       <div class='my-16 sm:my-24'>
