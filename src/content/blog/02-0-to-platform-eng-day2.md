@@ -7,10 +7,7 @@ tags:
   - Devops
   - 'Cloud Native'
   - SRE
-seo:
-  image:
-    src: '/post-day01-eng.webp'
-    alt: CNCF
+
 isFeatured: true
 ---
 
