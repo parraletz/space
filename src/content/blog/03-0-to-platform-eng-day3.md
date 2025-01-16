@@ -133,14 +133,14 @@ All the example code from this post has been uploaded to GitHub for you to explo
 
 👉 Check it out here: Zero to Platform Engineer Repository
 
-Feel free to clone the repo, experiment with the code, and even contribute if you’d like! 🚀
+Feel free to clone the repo, experiment with the code, and even contribute if you'd like! 🚀
 
 
 ## Follow the Series!
 
-🎉 Don’t miss a single step in your journey to becoming a Platform Engineer! 🎉
+🎉 Don't miss a single step in your journey to becoming a Platform Engineer! 🎉
 
-This post is just the beginning. Here’s what we’ve covered so far and what’s coming up next:
+This post is just the beginning. Here's what we've covered so far and what's coming up next:
 
 * [Day 0: Introduction – What’s Platform Engineering?](https://parraletz.space/blog/00-0-to-platform-eng-intro/)
 * [Day 1: Introduction to the CNCF Landscape](https://parraletz.space/blog/01-0-to-platform-eng-day1/)
