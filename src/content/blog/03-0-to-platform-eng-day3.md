@@ -144,7 +144,7 @@ This post is just the beginning. Here’s what we’ve covered so far and what�
 
 * [Day 0: Introduction – What’s Platform Engineering?](https://parraletz.space/blog/00-0-to-platform-eng-intro/)
 * [Day 1: Introduction to the CNCF Landscape](https://parraletz.space/blog/01-0-to-platform-eng-day1/)
-* [Day 2: Day 2: Containers and Docker – The Building Blocks of Cloud Native]()
+* [Day 2: Day 2: Containers and Docker – The Building Blocks of Cloud Native](https://parraletz.space/blog/02-0-to-platform-eng-day2/)
 * Day 3: Containers and Kubernetes – The Building Blocks of Cloud Native (You are here!)
  
 👉 Bookmark this blog and check back every day for new posts in the series.
