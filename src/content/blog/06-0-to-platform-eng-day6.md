@@ -1,5 +1,5 @@
 ---
-title: 'Day 5: Kubernetes Services – Connecting Your Applications'
+title: 'Day 6: ConfigMaps and Secrets – Managing Configurations in Kubernetes'
 excerpt: 'Welcome to Day 6 of the Zero to Platform Engineer in 30 Days challenge! Today, we’re focusing on ConfigMaps and Secrets, two essential tools for managing application configurations and sensitive data in Kubernetes.'
 publishDate: Jan 19 2025
 tags:
