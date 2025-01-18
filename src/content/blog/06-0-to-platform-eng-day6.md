@@ -10,8 +10,8 @@ tags:
   - kubernetes
 seo:
   image:
-    src: '/day5.webp'
-    alt: 'Day 5'
+    src: '/post-6.webp'
+    alt: 'Day 6'
 
 isFeatured: true
 ---
