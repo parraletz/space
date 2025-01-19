@@ -29,4 +29,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           packageManager: pnpm
-          command: pages deploy dist
+          command: pages deploy dist --project-name=space
