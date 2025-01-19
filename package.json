@@ -28,5 +28,5 @@
     "prettier-plugin-tailwindcss": "^0.6.10",
     "wrangler": "^3.103.2"
   },
-      "packageManager": "pnpm@9.15"
+      "packageManager": "pnpm@9.15.4"
 }
