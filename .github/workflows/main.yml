@@ -5,9 +5,9 @@ on:
       - main
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
-    name: Build
+    name: Deploy
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
@@ -24,22 +24,6 @@ jobs:
         run: pnpm install
       - name: Build
         run: pnpm build
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    name: Deploy
-    steps:
-      - name: Checkout your repository using git
-        uses: actions/checkout@v4
-      - name: Install pnpm
-        uses: pnpm/action-setup@v4
-        with:
-          version: '9.9.0'
-      - name: Use Node.js 22
-        uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: 'pnpm'
       - name: Deploy
         uses: cloudflare/wrangler-action@v3
         with:
