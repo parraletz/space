@@ -12,8 +12,7 @@ tags:
   - IaC
 seo:
   image:
-    src: '/post-day7.webp'
-    alt: 'Day 7'
+    src: '/post-9.webp'
 
 isFeatured: true
 ---
