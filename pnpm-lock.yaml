@@ -43,8 +43,8 @@ importers:
         specifier: ^3.4.2
         version: 3.4.2
       prettier-plugin-tailwindcss:
-        specifier: ^0.6.10
-        version: 0.6.10(prettier@3.4.2)
+        specifier: ^0.6.11
+        version: 0.6.11(prettier@3.4.2)
       wrangler:
         specifier: ^3.103.2
         version: 3.103.2
@@ -1898,8 +1898,8 @@ packages:
     resolution: {integrity: sha512-gYBeFTZLu055D8Vv3cSPox/0iTPtkzxpLroSYYA7WXgRi31WCJ51Uyl8ZiPeUUjyvs2MBzK+S8v9JVUgHU/Sqw==}
     engines: {node: '>=18.12'}
 
-  prettier-plugin-tailwindcss@0.6.10:
-    resolution: {integrity: sha512-ndj2WLDaMzACnr1gAYZiZZLs5ZdOeBYgOsbBmHj3nvW/6q8h8PymsXiEnKvj/9qgCCAoHyvLOisoQdIcsDvIgw==}
+  prettier-plugin-tailwindcss@0.6.11:
+    resolution: {integrity: sha512-YxaYSIvZPAqhrrEpRtonnrXdghZg1irNg4qrjboCXrpybLWVs55cW2N3juhspVJiO0JBvYJT8SYsJpc8OQSnsA==}
     engines: {node: '>=14.21.3'}
     peerDependencies:
       '@ianvs/prettier-plugin-sort-imports': '*'
@@ -4887,7 +4887,7 @@ snapshots:
       find-yarn-workspace-root2: 1.2.16
       which-pm: 3.0.0
 
-  prettier-plugin-tailwindcss@0.6.10(prettier@3.4.2):
+  prettier-plugin-tailwindcss@0.6.11(prettier@3.4.2):
     dependencies:
       prettier: 3.4.2
 
