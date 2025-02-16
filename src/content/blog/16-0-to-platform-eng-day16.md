@@ -136,6 +136,9 @@ This post is just the beginning. Here's what we've covered so far and what's com
 * [Day 10: Managing Kubernetes with Helm and Terraform](https://parraletz.space/blog/10-0-to-platform-eng-day10/)
 * [Day 11: Introduction to GitOps with ArgoCD](https://parraletz.space/blog/11-0-to-platform-eng-day11/)
 * [Day 12: Advanced GitOps with Argo Rollouts](https://parraletz.space/blog/12-0-to-platform-eng-day12/)
+* [Day 13: Introduction to Observability with Prometheus and Grafana](https://parraletz.space/blog/13-0-to-platform-eng-day13/)
+* [Day 14: Securing Kubernetes – Runtime Security and Policy Enforcemeno](https://parraletz.space/blog/14-0-to-platform-eng-day14/)
+* [Day 15: Automating Workflows with Kustomize and Skaffold](https://parraletz.space/blog/15-0-to-platform-eng-day15/)
   
 
  
