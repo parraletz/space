@@ -1,6 +1,6 @@
 ---
-title: 'Day 16: Building Developer Portals with Backstage'
-excerpt: 'Welcome to Day 16 of the Zero to Platform Engineer in 30 Days challenge! 🚀 Today, we’re focusing on Internal Developer Portals (IDPs) and how to build one using Backstage, an open-source platform that enhances developer experience by centralizing documentation, services, APIs, and deployments.'
+title: 'Day 16: Getting Started with Prometheus – Monitoring Metrics'
+excerpt: 'Welcome to Day 16 of the Zero to Platform Engineer in 30 Days challenge! 🚀 Today, we’ll explore Prometheus, the go-to tool for monitoring Kubernetes and collecting real-time metrics.'
 
 publishDate: Jan 30 2025
 tags:
@@ -9,7 +9,10 @@ tags:
   - 'Cloud Native'  
   - SRE
   - kubernetes
-  - backstage
+  - grafana
+  - prometheus
+  - monitoring
+  - observability
 seo:
   image:
     src: '/post-16.webp'
@@ -17,123 +20,96 @@ seo:
 isFeatured: true
 ---
 
-Welcome to Day 16 of the Zero to Platform Engineer in 30 Days challenge! 🚀 Today, we’re focusing on Internal Developer Portals (IDPs) and how to build one using Backstage, an open-source platform that enhances developer experience by centralizing documentation, services, APIs, and deployments.
+Welcome to Day 16 of the Zero to Platform Engineer in 30 Days challenge! 🚀 Today, we’ll explore Prometheus, the go-to tool for monitoring Kubernetes and collecting real-time metrics.
 
 
 
-## Why Use a Developer Portal?
+## Why Monitoring with Prometheus?
 
+### Monitoring is essential to:
 
-A well-structured Internal Developer Platform (IDP):
+* Detect Issues Early: Identify problems before they impact users.
+* Optimize Performance: Track CPU, memory, and request latencies.
+* Enable Alerting: Automatically notify teams when issues arise.
 
-* **Improves Developer Productivity**: Provides a self-service interface for deploying and managing applications.
-* **Enhances Visibility**: Organizes services, APIs, and infrastructure in a centralized hub.
-* **Reduces Cognitive Load**: Developers can focus on writing code instead of navigating complex infrastructure.
+### 🎯 What Prometheus Provides:
 
-### 🎯 Key Features of Backstage:
+* Time-series database optimized for Kubernetes metrics.
+* Powerful query language (PromQL) for analyzing data.
+* Built-in alerting and integrations with Grafana, Alertmanager, and more.
 
-* **Software Catalog**: Track and manage services, APIs, and resources.
-* **Plugins**: Extend functionality with Kubernetes, CI/CD integrations, and observability tools.
-* **API Documentation**: Centralize API management with OpenAPI and GraphQL integrations.
+## Installing Prometheus in Kubernetes
 
-### What Is Backstage?
+### Step 1: Deploy Prometheus with Helm
 
-
-Backstage, originally developed by Spotify, is an open-source developer portal that helps engineering teams:
-
-* Discover and manage services through a software catalog.
-* Access self-service infrastructure and deployment tools.
-* Standardize documentation and workflows.
-
-
-## Hands-On: Setting Up Backstage
-
-### Step 1: Install Backstage Locally
-
-1.	Install Node.js and Yarn:
+1. Add the Prometheus Helm repository:
 
 ```bash
-npm install -g yarn
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 ```
 
-2. Create a new Backstage app:
+2. Deploy Prometheus with Helm:
 
 ```bash
-npx @backstage/create-app@latest
-cd zero-to-platform-engineer
+helm install prometheus prometheus-community/kube-prometheus-stack --namespace monitoring --create-namespace
 
 ```
 
-3. Start the Backstage server:
+3. Verify that Prometheus is running:
 
 ```bash
-yarn dev
+kubectl get pods -n monitoring
 ```
 
-4. Open Backstage in your browser: http://localhost:3000
+### Step 2: Accessing Prometheus UI
 
-## Step 2: Add Services to the Backstage Catalog
-
-1. Inside the Backstage UI, navigate to Create Component.
-2. Register an existing service from GitHub using its repository URL.
-3. Define metadata in ```catalog-info.yaml```:
-
-```yaml
-apiVersion: backstage.io/v1alpha1
-kind: Component
-metadata:
-  name: zero-to-platform-service
-  annotations:
-    github.com/project-slug: parraletz/zero-to-platform-engineer
-spec:
-  type: service
-  owner: engineering
-  lifecycle: production
-```
-
-4. Apply the configuration:
+1. Forward Prometheus to your local machine:
 
 ```bash
-curl -X POST http://localhost:7000/api/catalog/entities -H "Content-Type: application/json" -d @catalog-info.yaml
+kubectl port-forward svc/prometheus-kube-prometheus-prometheus -n monitoring 9090:9090
 ```
 
-### Step 3: Integrate Kubernetes with Backstage
-
-1. Install the Kubernetes plugin:
+2. Open Prometheus UI in your browser:
 
 ```bash
-yarn add @backstage/plugin-kubernetes
+👉 http://localhost:9090
 ```
 
-2. Configure Backstage to connect with your Kubernetes cluster by adding:
+### Step 3: Querying Metrics with PromQL
 
-```yaml
-kubernetes:
-  serviceLocatorMethod:
-    type: multiTenant
-  clusterLocatorMethods:
-    - type: config
-      clusters:
-        - name: my-cluster
-          url: https://my-kubernetes-api
-          authProvider: serviceAccount
-```
-3. Restart Backstage:
+Run the following PromQL queries to analyze metrics:
 
-```bash
-yarn dev
+1. CPU usage of all nodes:
+
+```promql
+sum(rate(node_cpu_seconds_total[5m])) by (instance)
 ```
+
+2. Memory usage of all nodes:
+
+```promql
+sum(container_memory_usage_bytes) by (pod)
+```
+
+3. Requests per second to your application:
+
+```promql
+rate(http_requests_total[1m])
+```
+
+
+
 
 ##  Activity for Today
 
-1. Set up Backstage locally and explore its default features.
-2. Register at least one service in the Software Catalog.
-3. Integrate Kubernetes and view cluster resources inside Backstage.
+1.  Deploy Prometheus using Helm.
+2.  Run PromQL queries to analyze your cluster’s metrics.
+3.  Configure Alertmanager to notify when CPU usage is high.
 
 
 ## What’s Next?
 
-Tomorrow, we’ll explore cloud cost optimization strategies for Kubernetes and cloud-native applications.
+Tomorrow, we’ll visualize Prometheus metrics with Grafana, creating custom dashboards and alerts.
 
 
 👉 Check it out here: [Zero to Platform Engineer Repository](https://github.com/parraletz/zero-to-platform-engineer)
@@ -160,6 +136,9 @@ This post is just the beginning. Here's what we've covered so far and what's com
 * [Day 10: Managing Kubernetes with Helm and Terraform](https://parraletz.space/blog/10-0-to-platform-eng-day10/)
 * [Day 11: Introduction to GitOps with ArgoCD](https://parraletz.space/blog/11-0-to-platform-eng-day11/)
 * [Day 12: Advanced GitOps with Argo Rollouts](https://parraletz.space/blog/12-0-to-platform-eng-day12/)
+* [Day 13: Introduction to Observability with Prometheus and Grafana](https://parraletz.space/blog/13-0-to-platform-eng-day13/)
+* [Day 14: Securing Kubernetes – Runtime Security and Policy Enforcemeno](https://parraletz.space/blog/14-0-to-platform-eng-day14/)
+* [Day 15: Automating Workflows with Kustomize and Skaffold](https://parraletz.space/blog/15-0-to-platform-eng-day15/)
   
 
  
