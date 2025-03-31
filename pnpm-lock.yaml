@@ -27,8 +27,8 @@ importers:
         specifier: ^5.5.6
         version: 5.5.6(@types/node@22.10.5)(jiti@1.21.7)(rollup@4.38.0)(typescript@5.8.2)(yaml@2.7.0)
       marked:
-        specifier: ^14.1.4
-        version: 14.1.4
+        specifier: ^15.0.7
+        version: 15.0.7
       tailwindcss:
         specifier: ^3.4.17
         version: 3.4.17
@@ -1486,8 +1486,8 @@ packages:
   markdown-table@3.0.4:
     resolution: {integrity: sha512-wiYz4+JrLyb/DqW2hkFJxP7Vd7JuTDm77fvbM8VfEQdmSMqcImWeeRbHwZjBjIFki/VaMK2BhFi7oUUZeM5bqw==}
 
-  marked@14.1.4:
-    resolution: {integrity: sha512-vkVZ8ONmUdPnjCKc5uTRvmkRbx4EAi2OkTOXmfTDhZz3OFqMNBM1oTTWwTr4HY4uAEojhzPf+Fy8F1DWa3Sndg==}
+  marked@15.0.7:
+    resolution: {integrity: sha512-dgLIeKGLx5FwziAnsk4ONoGwHwGPJzselimvlVskE9XLN4Orv9u2VA3GWw/lYUqjfA0rUT/6fqKwfZJapP9BEg==}
     engines: {node: '>= 18'}
     hasBin: true
 
@@ -4141,7 +4141,7 @@ snapshots:
 
   markdown-table@3.0.4: {}
 
-  marked@14.1.4: {}
+  marked@15.0.7: {}
 
   mdast-util-definitions@6.0.0:
     dependencies:
