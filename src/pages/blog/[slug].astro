@@ -69,26 +69,24 @@ if (shouldRedirect && redirectUrl) {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="refresh" content="0;url=${redirectUrl}">
-        <title>Redirigiendo a versión en español</title>
+        <title>Redirecting</title>
         <style>
           body {
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             margin: 0;
             padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            opacity: 0; /* Hacemos el contenido invisible */
+            opacity: 0;
+            visibility: hidden;
+            overflow: hidden;
+            width: 0;
+            height: 0;
           }
         </style>
         <script>
-          window.location.href = "${redirectUrl}";
+          // Redirección inmediata sin mostrar nada
+          window.location.replace("${redirectUrl}");
         </script>
       </head>
-      <body>
-        <div>Redirigiendo...</div>
-      </body>
+      <body></body>
     </html>
   `
 
