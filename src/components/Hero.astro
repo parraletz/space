@@ -2,8 +2,12 @@
 import { marked } from 'marked'
 import siteConfig from '../data/site-config'
 import Button from './Button.astro'
+import { getCurrentLanguage, useTranslations } from '../i18n/utils'
 
 const hero = siteConfig.hero
+const currentLang = getCurrentLanguage(Astro.url)
+const translations = useTranslations(currentLang)
+const langPrefix = currentLang === 'en' ? '' : '/es'
 ---
 
 {
@@ -14,7 +18,7 @@ const hero = siteConfig.hero
     <section class='w-full flex flex-col gap-8 mb-16 sm:mb-24'>
       {hero.title && (
         <h1 class='text-3xl leading-tight font-serif font-medium sm:text-5xl sm:leading-tight'>
-          {hero.title}
+          {translations.home.hero.title || hero.title}
         </h1>
       )}
       {hero.image?.src && (
@@ -41,8 +45,8 @@ const hero = siteConfig.hero
       )}
       {hero.actions && hero.actions.length > 0 && (
         <div class='flex flex-wrap gap-4'>
-          {hero.actions.map((action) => (
-            <Button href={action.href}>{action.text}</Button>
+          {hero.actions.map(action => (
+            <Button href={`${langPrefix}${action.href}`}>{action.text}</Button>
           ))}
         </div>
       )}

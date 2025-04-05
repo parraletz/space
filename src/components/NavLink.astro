@@ -1,18 +1,37 @@
 ---
 import type { HTMLAttributes } from 'astro/types'
+import { getCurrentLanguage } from '../i18n/utils'
 
 type Props = HTMLAttributes<'a'>
 
 const { href, class: className, ...props } = Astro.props
-
 const { pathname } = Astro.url
-const isActive = href === pathname || href === pathname.replace(/\/$/, '')
+const currentLang = getCurrentLanguage(Astro.url)
+
+// Normaliza las URLs para la comparación
+const normalizedHref = typeof href === 'string' ? href.replace(/\/$/, '') : ''
+const normalizedPathname = pathname.replace(/\/$/, '')
+
+// Para la comparación, eliminamos el prefijo de idioma si existe
+const pathnameWithoutLangPrefix = normalizedPathname.replace(/^\/es/, '')
+
+let isActive = false
+
+if (currentLang === 'en') {
+  isActive =
+    normalizedHref === normalizedPathname ||
+    normalizedHref === pathnameWithoutLangPrefix
+} else {
+  // Para español, la URL activa tendría un prefijo /es
+  const spanishHref = `/es${normalizedHref}`
+  isActive = spanishHref === normalizedPathname
+}
 ---
 
 <a
   class:list={[
     className,
-    { 'underline underline-offset-2 decoration-1': isActive },
+    { 'underline underline-offset-2 decoration-1': isActive }
   ]}
   href={href}
   {...props}

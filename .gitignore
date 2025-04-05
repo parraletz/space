@@ -24,3 +24,4 @@ pnpm-debug.log*
 .idea/
 
 .codegpt
+src/content/blog/bienvenidos-al-blog-bilingue.md
