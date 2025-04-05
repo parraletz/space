@@ -48,3 +48,171 @@
     }
     */
 }
+
+/* Estilos básicos para bloques de código */
+pre {
+  margin: 1.5em 0;
+  border-radius: 0.5em;
+  overflow-x: auto;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  font-size: 0.95em;
+  line-height: 1.5;
+  position: relative;
+}
+
+pre code {
+  padding: 1.25em !important;
+  display: block;
+}
+
+/* Estilos para el modo oscuro */
+html.dark pre {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Código en línea */
+:not(pre) > code {
+  padding: 0.2em 0.4em;
+  border-radius: 0.3em;
+  font-size: 0.9em;
+  font-family: monospace;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Reglas básicas para bloques de código */
+.astro-code {
+  margin: 0 !important;
+  border-radius: 0.4em !important;
+  overflow: auto;
+}
+
+/* Modo claro - Invertir los colores del tema oscuro */
+html:not(.dark) .astro-code {
+  filter: invert(0.95) hue-rotate(180deg) brightness(1.05);
+}
+
+/* Estilos para la sintaxis resaltada por Shiki - Modo claro por defecto */
+.astro-code,
+.astro-code span {
+  transition: all 0.3s ease;
+}
+
+/* Modo oscuro cuando se selecciona manualmente */
+html.dark .astro-code,
+html.dark .astro-code span {
+  /* Nada que hacer aquí, se aplica el tema oscuro por defecto */
+}
+
+html.dark :not(pre) > code {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Indicador de lenguaje de programación */
+pre::before {
+  content: attr(data-language);
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.08);
+  color: rgba(0, 0, 0, 0.7);
+  padding: 0.2em 0.5em;
+  font-size: 0.7em;
+  border-bottom-left-radius: 0.3em;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+html.dark pre::before {
+  background-color: rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Separación entre bloques de código consecutivos */
+pre + pre {
+  position: relative;
+  margin-top: 3em !important;  /* Aumentar el margen superior */
+}
+
+/* Añadir un separador visual entre bloques de código consecutivos */
+pre + pre::after {
+  content: "";
+  position: absolute;
+  top: -1.5em;
+  left: 10%;
+  width: 80%;
+  height: 2px;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 1px;
+}
+
+/* Versión oscura del separador */
+html.dark pre + pre::after {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Separación alternativa para bloques de código mediante la clase astro-code */
+.prose div:has(.astro-code) + div:has(.astro-code) {
+  margin-top: 3em !important;
+  position: relative;
+}
+
+.prose div:has(.astro-code) + div:has(.astro-code)::before {
+  content: "···";
+  position: absolute;
+  top: -2em;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 1.5em;
+  color: rgba(0, 0, 0, 0.3);
+  letter-spacing: 0.5em;
+}
+
+html.dark .prose div:has(.astro-code) + div:has(.astro-code)::before {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+/* Tercer enfoque: aumentar margen general y especificidad */
+.prose > pre {
+  margin-bottom: 3em !important;
+}
+
+/* Forzar estilo directamente en la clase astro-code */
+.astro-code {
+  margin-bottom: 1.5em !important;
+}
+
+/* Estilo específico para pre dentro de la prosa */
+article .prose pre + pre,
+.prose pre + pre {
+  border-top: 3px dashed rgba(0, 0, 0, 0.1);
+  padding-top: 3em;
+  margin-top: 3em !important;
+}
+
+html.dark article .prose pre + pre,
+html.dark .prose pre + pre {
+  border-top-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Estilos específicos para los diferentes tokens en modo claro */
+/*
+.astro-code .comment { color: #6a737d !important; }
+.astro-code .keyword { color: #d73a49 !important; }
+.astro-code .string { color: #032f62 !important; }
+.astro-code .function { color: #6f42c1 !important; }
+.astro-code .number { color: #005cc5 !important; }
+.astro-code .operator { color: #d73a49 !important; }
+.astro-code .punctuation { color: #24292e !important; }
+*/
+
+/* Estilos específicos para los diferentes tokens en modo oscuro */
+/*
+html.dark .astro-code .comment { color: #6a737d !important; }
+html.dark .astro-code .keyword { color: #ff7b72 !important; }
+html.dark .astro-code .string { color: #a3be8c !important; }
+html.dark .astro-code .function { color: #88c0d0 !important; }
+html.dark .astro-code .number { color: #b48ead !important; }
+html.dark .astro-code .operator { color: #81a1c1 !important; }
+html.dark .astro-code .punctuation { color: #e1e4e8 !important; }
+*/
