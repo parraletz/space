@@ -60,9 +60,42 @@ type Props = {
 const { href } = Astro.url
 const { post, prevPost, nextPost, shouldRedirect, redirectUrl } = Astro.props
 
-// Si necesitamos redireccionar, hacerlo inmediatamente
+// Si necesitamos redireccionar, preparar una redirección con JavaScript para evitar página en blanco
 if (shouldRedirect && redirectUrl) {
-  return Astro.redirect(redirectUrl)
+  const htmlContent = `
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="refresh" content="0;url=${redirectUrl}">
+        <title>Redirecting</title>
+        <style>
+          body {
+            margin: 0;
+            padding: 0;
+            opacity: 0;
+            visibility: hidden;
+            overflow: hidden;
+            width: 0;
+            height: 0;
+          }
+        </style>
+        <script>
+          // Redirección inmediata sin mostrar nada
+          window.location.replace("${redirectUrl}");
+        </script>
+      </head>
+      <body></body>
+    </html>
+  `
+
+  return new Response(htmlContent, {
+    status: 200,
+    headers: {
+      'Content-Type': 'text/html'
+    }
+  })
 }
 
 const {
