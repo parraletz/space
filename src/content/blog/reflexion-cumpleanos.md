@@ -2,6 +2,7 @@
 title: Reflexion de Cumpleaños
 excerpt: La vida se despliega como un vasto horizonte que nos reta a contemplar, agradecer y crecer día tras día. En esta reflexión, exploro la conexión con mis principios, mi familia y el incesante aprendizaje que nos ofrece la existencia cuando nos atrevemos a vivir con conciencia y gratitud.
 publishDate: 'Jan 08 2025'
+language: 'es'
 tags:
   - Vida
   - Blog
@@ -23,6 +24,5 @@ Entre esas preguntas, floreció el crecimiento. Un crecimiento cotidiano, consta
 Hoy, al mirar hacia atrás, confirmo que la vida es justa: me ofrece el espacio exacto para llevar a cabo aquello que realmente importa. Reconocerlo, y agradecer cada ocasión en que la existencia me retó, es la clave para avanzar con serenidad. Y así, con la certeza de quien elige el camino de la sabiduría, decido mantener mi atención en lo que de verdad nutre mi alma. Ni más, ni menos.
 
 Porque, al final, como un océano que acaricia la orilla, la vida siempre acaba regresando a su flujo natural. Lo importante es estar presente, contemplar, aprender y, sobre todo, agradecer; sabiendo que, en ese discurrir constante, cada paso que doy es una invitación a vivir con mayor plenitud y sentido.
-
 
 AP

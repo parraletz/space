@@ -1,8 +1,12 @@
 ---
 import siteConfig from '../data/site-config'
+import { getCurrentLanguage, useTranslations } from '../i18n/utils'
 
 const socialLinks = siteConfig.socialLinks || []
 const navLinks = siteConfig.footerNavLinks || []
+const currentLang = getCurrentLanguage(Astro.url)
+const langPrefix = currentLang === 'en' ? '' : '/es'
+const translations = useTranslations(currentLang)
 ---
 
 <footer class='w-full max-w-3xl mx-auto pt-12 pb-10 sm:pt-24 sm:pb-14'>
@@ -12,7 +16,7 @@ const navLinks = siteConfig.footerNavLinks || []
         {navLinks.map(link => (
           <a
             class='font-serif hover:underline hover:underline-offset-2'
-            href={link.href}
+            href={`${langPrefix}${link.href}`}
           >
             {link.text}
           </a>
@@ -48,8 +52,8 @@ const navLinks = siteConfig.footerNavLinks || []
     <p class='text-sm'>
       &copy; {new Date().getFullYear()}&nbsp;<a
         class='hover:underline hover:underline-offset-2'
-        href='/'>{siteConfig.title}</a
-      >. All rights reserved.
+        href={langPrefix || '/'}>{siteConfig.title}</a
+      >. {translations.footer.rights}
     </p>
   </div>
 </footer>

@@ -1,49 +1,52 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content'
-import BaseLayout from '../../layouts/BaseLayout.astro'
-import Button from '../../components/Button.astro'
-import FormattedDate from '../../components/FormattedDate.astro'
-import PostPreview from '../../components/PostPreview.astro'
-import Subscribe from '../../components/Subscribe.astro'
-import { sortItemsByDateDesc } from '../../utils/data-utils'
-import { slugify } from '../../utils/common-utils'
-import PostComments from '../../components/PostComments.astro'
+import BaseLayout from '../../../layouts/BaseLayout.astro'
+import Button from '../../../components/Button.astro'
+import FormattedDate from '../../../components/FormattedDate.astro'
+import PostPreview from '../../../components/PostPreview.astro'
+import Subscribe from '../../../components/Subscribe.astro'
+import { sortItemsByDateDesc } from '../../../utils/data-utils'
+import { slugify } from '../../../utils/common-utils'
+import PostComments from '../../../components/PostComments.astro'
+import { getCurrentLanguage, useTranslations } from '../../../i18n/utils'
 
 export async function getStaticPaths() {
   const allPosts = await getCollection('blog')
 
-  // Para redirección: obtener los posts en español para redirigir
-  const spanishPosts = allPosts.filter(post => post.data.language === 'es')
+  // Para redirección: obtener los posts en inglés para redirigir
+  const englishPosts = allPosts.filter(
+    post => !post.data.language || post.data.language === 'en'
+  )
 
-  // Posts en inglés para mostrar
-  const englishPosts = allPosts
-    .filter(post => !post.data.language || post.data.language === 'en')
+  // Posts en español para mostrar
+  const spanishPosts = allPosts
+    .filter(post => post.data.language === 'es')
     .sort(sortItemsByDateDesc)
 
-  const postCount = englishPosts.length
+  const postCount = spanishPosts.length
 
-  // Crear rutas para posts en inglés
-  const englishRoutes = englishPosts.map((post, index) => ({
+  // Crear rutas para posts en español
+  const spanishRoutes = spanishPosts.map((post, index) => ({
     params: { slug: post.slug },
     props: {
       post,
-      prevPost: index + 1 !== postCount ? englishPosts[index + 1] : null,
-      nextPost: index !== 0 ? englishPosts[index - 1] : null,
+      prevPost: index + 1 !== postCount ? spanishPosts[index + 1] : null,
+      nextPost: index !== 0 ? spanishPosts[index - 1] : null,
       shouldRedirect: false
     }
   }))
 
-  // Crear rutas para redirecciones de posts en español
-  const redirectRoutes = spanishPosts.map(post => ({
+  // Crear rutas para redirecciones de posts en inglés
+  const redirectRoutes = englishPosts.map(post => ({
     params: { slug: post.slug },
     props: {
       post,
       shouldRedirect: true,
-      redirectUrl: `/es/blog/${post.slug}/`
+      redirectUrl: `/blog/${post.slug}/`
     }
   }))
 
-  return [...englishRoutes, ...redirectRoutes]
+  return [...spanishRoutes, ...redirectRoutes]
 }
 
 type Props = {
@@ -72,6 +75,8 @@ const {
   seo
 } = post.data
 const { Content } = await post.render()
+const currentLang = getCurrentLanguage(Astro.url)
+const translations = useTranslations(currentLang)
 ---
 
 <BaseLayout
@@ -95,7 +100,7 @@ const { Content } = await post.render()
             <>
               {' '}
               <span>
-                (Updated on <FormattedDate date={updatedDate} />)
+                (Actualizado el <FormattedDate date={updatedDate} />)
               </span>
             </>
           )
@@ -114,7 +119,7 @@ const { Content } = await post.render()
             {tags.map(tag => (
               <a
                 class='text-main hover:underline'
-                href={`/tags/${slugify(tag)}`}
+                href={`/es/tags/${slugify(tag)}`}
               >
                 #{tag}
               </a>
@@ -124,10 +129,10 @@ const { Content } = await post.render()
       }
       <Button
         class='copy-url-button'
-        aria-label='Copy link'
+        aria-label='Copiar enlace'
         data-url={href}
-        data-tooltip-default='Copy link'
-        data-tooltip-success='Copied'>Share</Button
+        data-tooltip-default='Copiar enlace'
+        data-tooltip-success='Copiado'>Compartir</Button
       >
     </div>
   </article>
@@ -138,7 +143,7 @@ const { Content } = await post.render()
     (prevPost || nextPost) && (
       <div class='my-16 sm:my-24'>
         <h2 class='mb-12 text-xl font-serif italic sm:mb-16 sm:text-2xl'>
-          Read Next
+          Leer Siguiente
         </h2>
         {nextPost && (
           <PostPreview
@@ -175,7 +180,7 @@ const { Content } = await post.render()
 
       await navigator.clipboard.writeText(url)
 
-      button.innerText = 'Copied'
+      button.innerText = 'Copiado'
 
       setTimeout(() => {
         button.innerText = label

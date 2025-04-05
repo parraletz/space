@@ -1,20 +1,20 @@
 ---
 import { getCollection } from 'astro:content'
-import Button from '../components/Button.astro'
-import Hero from '../components/Hero.astro'
-import PostPreview from '../components/PostPreview.astro'
-import ProjectPreview from '../components/ProjectPreview.astro'
-import siteConfig from '../data/site-config'
-import BaseLayout from '../layouts/BaseLayout.astro'
-import { sortItemsByDateDesc } from '../utils/data-utils'
-import { getCurrentLanguage, useTranslations } from '../i18n/utils'
+import Button from '../../components/Button.astro'
+import Hero from '../../components/Hero.astro'
+import PostPreview from '../../components/PostPreview.astro'
+import ProjectPreview from '../../components/ProjectPreview.astro'
+import siteConfig from '../../data/site-config'
+import BaseLayout from '../../layouts/BaseLayout.astro'
+import { sortItemsByDateDesc } from '../../utils/data-utils'
+import { getCurrentLanguage, useTranslations } from '../../i18n/utils'
 
 const allPosts = await getCollection('blog')
-// Filtrar solo los posts en inglés (language === 'en' o undefined)
-const englishPosts = allPosts
-  .filter(post => !post.data.language || post.data.language === 'en')
+// Filtrar solo los posts en español
+const spanishPosts = allPosts
+  .filter(post => post.data.language === 'es')
   .sort(sortItemsByDateDesc)
-const featuredPosts = englishPosts.filter(({ data }) => data.isFeatured)
+const featuredPosts = spanishPosts.filter(({ data }) => data.isFeatured)
 
 const projects = (await getCollection('projects')).sort(sortItemsByDateDesc)
 const featuredProjects = projects.filter(({ data }) => data.isFeatured)
@@ -39,7 +39,9 @@ const translations = useTranslations(currentLang)
           />
         ))}
         <div class='mt-12 sm:mt-16'>
-          <Button href='/projects'>{translations.home.projects.viewAll}</Button>
+          <Button href='/es/projects'>
+            {translations.home.projects.viewAll}
+          </Button>
         </div>
       </div>
     )
@@ -54,7 +56,7 @@ const translations = useTranslations(currentLang)
           <PostPreview post={post} class='mb-10 sm:mb-12' headingLevel='h3' />
         ))}
         <div class='mt-12 sm:mt-16'>
-          <Button href='/blog'>{translations.home.writing.viewAll}</Button>
+          <Button href='/es/blog'>{translations.home.writing.viewAll}</Button>
         </div>
       </div>
     )
