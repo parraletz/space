@@ -80,10 +80,19 @@ if (shouldRedirect && redirectUrl) {
             width: 0;
             height: 0;
           }
+          @keyframes fadeOut {
+            from { opacity: 0; }
+            to { opacity: 0; }
+          }
+          html {
+            animation: fadeOut 0.5s ease;
+          }
         </style>
         <script>
-          // Redirección inmediata sin mostrar nada
-          window.location.replace("${redirectUrl}");
+          // Redirección inmediata con transición
+          document.addEventListener('DOMContentLoaded', () => {
+            window.location.href = "${redirectUrl}";
+          });
         </script>
       </head>
       <body></body>
