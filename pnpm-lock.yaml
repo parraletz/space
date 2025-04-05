@@ -29,6 +29,9 @@ importers:
       marked:
         specifier: ^15.0.7
         version: 15.0.7
+      shiki:
+        specifier: ^3.2.1
+        version: 3.2.1
       tailwindcss:
         specifier: ^3.4.17
         version: 3.4.17
