@@ -2,13 +2,19 @@
 title: Get in touch
 seo:
   title: Contact
-  description: Get in touch through email or social media! Let me know how I can help.
+  description: Get in touch through the contact form, email or social media!
 ---
 
-Thank you for reaching out! Whether you have a question, a suggestion, or just want to share your thoughts, I'm all ears. Feel free to get in touch through any of the methods below:
+## Contact Me
 
-_Email:_
-Feel free to drop me an email at [i@parraletz.me](mailto:i@parraletz.me), and I'll do my best to respond as soon as possible.
+Thank you for your interest in getting in touch! Whether you have a question, a suggestion, or just want to share your thoughts, I'm all ears.
 
-_Social Media:_
-Connect with me on social media as well. Find me on [Twitter](https://twitter.com/parraletz) or [LinkedIn](https://www.linkedin.com/in/parraletz).
+You can reach me through the contact form below, or through any of the alternative methods if you prefer.
+
+## Alternative Contact Methods
+
+**Email:** Feel free to drop me an email at [i@parraletz.me](mailto:i@parraletz.me), and I'll do my best to respond as soon as possible.
+
+**Social Media:** Connect with me on social media. Find me on [Twitter](https://twitter.com/parraletz) or [LinkedIn](https://www.linkedin.com/in/parraletz).
+
+I typically respond to all inquiries within 1-2 business days. Looking forward to hearing from you!

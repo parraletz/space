@@ -1,13 +1,16 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content'
 import BaseLayout from '../layouts/BaseLayout.astro'
+import ContactForm from '../components/ContactForm.astro'
+import ContactFormES from '../components/ContactFormES.astro'
+import { getCurrentLanguage } from '../i18n/utils'
 
 export async function getStaticPaths() {
   const pages = await getCollection('pages')
-  return pages.map((page) => {
+  return pages.map(page => {
     return {
       params: { slug: page.slug },
-      props: { page },
+      props: { page }
     }
   })
 }
@@ -17,6 +20,8 @@ type Props = { page: CollectionEntry<'pages'> }
 const { page } = Astro.props
 const { title, seo } = page.data
 const { Content } = await page.render()
+const currentLang = getCurrentLanguage(Astro.url)
+const isContactPage = page.slug === 'contact' || page.slug === 'es/contact'
 ---
 
 <BaseLayout
@@ -35,6 +40,22 @@ const { Content } = await page.render()
     </header>
     <div class='max-w-none prose prose-dante sm:prose-lg'>
       <Content />
+
+      {
+        isContactPage && currentLang === 'en' && (
+          <div class='mt-10'>
+            <ContactForm />
+          </div>
+        )
+      }
+
+      {
+        isContactPage && currentLang === 'es' && (
+          <div class='mt-10'>
+            <ContactFormES />
+          </div>
+        )
+      }
     </div>
   </article>
 </BaseLayout>
