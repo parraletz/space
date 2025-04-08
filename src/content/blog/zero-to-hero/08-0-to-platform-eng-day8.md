@@ -10,17 +10,16 @@ tags:
   - IaC
   - terraform
   - CI/CD
-  - "AWS CDK"
+  - 'AWS CDK'
 seo:
   image:
     src: '/post-day8.webp'
     alt: 'Day 8'
 
-isFeatured: true
+commentsEnabled: true
 ---
 
 Welcome to Week 2 of the Zero to Platform Engineer in 30 Days challenge! 🚀 This week, we’re diving into Infrastructure as Code (IaC) and CI/CD pipelines, two cornerstones of modern platform engineering. Today, we’ll focus on understanding what IaC is, why it matters, and how it helps manage infrastructure efficiently.
-
 
 ## What Is Infrastructure as Code (IaC)?
 
@@ -32,8 +31,6 @@ Welcome to Week 2 of the Zero to Platform Engineer in 30 Days challenge! 🚀 Th
 - **Version Controlled**: IaC files are stored in repositories like Git, making it easy to track changes.
 - **Repeatable**: Automate infrastructure provisioning consistently across environments.
 
-
-
 ### Why IaC Matters
 
 In traditional infrastructure management, scaling and maintaining environments can be time-consuming and error-prone. IaC solves this by:
@@ -43,10 +40,7 @@ In traditional infrastructure management, scaling and maintaining environments c
 - **Enabling Agility**: Spin up environments quickly for development, testing, and production.
 - **Enhancing Collaboration:** Teams can collaborate using version control systems like Git.
 
-
 🎯 **Real-World Use Case**: Think about how a cloud provider like AWS enables you to create resources (e.g., EC2, S3) programmatically via tools like Terraform or AWS CloudFormation.
-
-
 
 ### Popular IaC Tools
 
@@ -83,16 +77,14 @@ Let’s explore **Terraform** and **AWS CDK** to see how these tools work in pra
 
 ### Terraform Example: Creating an S3 Bucket
 
-
 #### Step 1: Install Terraform
 
 1. Install terraform on your machine, following the official [installation guide](https://www.terraform.io/downloads).
 2. Verify the installation:
+
 ```bash
 terraform version
 ```
-
-
 
 #### Step 2: Create a Terraform Configuration File
 
@@ -127,6 +119,7 @@ terraform init
 terraform plan
 terraform apply
 ```
+
 🎯 Pro tip: Use the -auto-approve flag to skip the confirmation prompt.
 
 #### Step 5: Clean Up
@@ -141,6 +134,7 @@ terraform destroy
 
 1. Install the AWS CDK on your machine, following the official [installation guide](https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html#getting_started_install).
 2. Verify the installation:
+
 ```bash
 cdk --version
 ```
@@ -148,11 +142,13 @@ cdk --version
 #### Step 2: Create a CDK Project
 
 1. Create a directory for your CDK project:
+
 ```bash
 mkdir cdk-iac-demo && cd cdk-iac-demo
 ```
 
 2. Initialize the CDK project:
+
 ```bash
 cdk init app --language typescript
 ```
@@ -162,19 +158,19 @@ cdk init app --language typescript
 1. Open the lib/cdk-iac-demo-stack.ts file and add the following:
 
 ```typescript
-import * as cdk from 'aws-cdk-lib';
-import { Construct } from 'constructs';
-import * as s3 from 'aws-cdk-lib/aws-s3';
+import * as cdk from 'aws-cdk-lib'
+import { Construct } from 'constructs'
+import * as s3 from 'aws-cdk-lib/aws-s3'
 
 export class CdkIacDemoStack extends cdk.Stack {
   constructor(scope: Construct, id: string, props?: cdk.StackProps) {
-    super(scope, id, props);
+    super(scope, id, props)
 
     new s3.Bucket(this, 'ZeroToPlatformEngineerBucket', {
       bucketName: 'zero-to-platform-engineer-bucket',
       versioned: true,
-      removalPolicy: cdk.RemovalPolicy.DESTROY,
-    });
+      removalPolicy: cdk.RemovalPolicy.DESTROY
+    })
   }
 }
 ```
@@ -196,10 +192,10 @@ cdk deploy
 
 🎯 Pro tip: Use the --require-approval flag to skip the confirmation prompt.
 
-
 ---
 
 🎯 When to Use AWS CDK:
+
 - You’re working primarily with AWS.
 - You prefer coding infrastructure in a general-purpose language.
 
@@ -216,18 +212,15 @@ cdk deploy
 2. Experiment with adding properties like versioning, encryption, or lifecycle rules.
 3. Reflect: Which tool felt easier or more intuitive?
 
-
 ## What’s Next?
 
 Tomorrow, we’ll explore advanced Terraform configurations, including managing Kubernetes resources programmatically.
 
-*Get ready to level up your platform engineering skills! 🚀*
-
+_Get ready to level up your platform engineering skills! 🚀_
 
 👉 Check it out here: [Zero to Platform Engineer Repository](https://github.com/parraletz/zero-to-platform-engineer)
 
 Feel free to clone the repo, experiment with the code, and even contribute if you'd like! 🚀
-
 
 ## Follow the Series!
 
@@ -235,15 +228,14 @@ Feel free to clone the repo, experiment with the code, and even contribute if yo
 
 This post is just the beginning. Here's what we've covered so far and what's coming up next:
 
-* [Day 0: Introduction - What’s Platform Engineering?](https://parraletz.space/blog/00-0-to-platform-eng-intro/)
-* [Day 1: Introduction to the CNCF Landscape](https://parraletz.space/blog/01-0-to-platform-eng-day1/)
-* [Day 2: Day 2: Containers and Docker - The Building Blocks of Cloud Native](https://parraletz.space/blog/02-0-to-platform-eng-day2/)
-* [Day 3: Containers and Kubernetes - The Building Blocks of Cloud Native](https://parraletz.space/blog/03-0-to-platform-eng-day3/)
-* [Day 4: Deployments and Scaling in Kubernetes - Let's Get Practical](https://parraletz.space/blog/03-0-to-platform-eng-day3/)
-* [Day 5: Kubernetes Services – Connecting Your Applications](https://parraletz.space/blog/05-0-to-platform-eng-day5/)
-* [Day 6: ConfigMaps and Secrets – Managing Configurations in Kubernetes](https://parraletz.space/blog/06-0-to-platform-eng-day6/)
-* [Day 7: Recap and Hands-On Challenges for Week 1 ](https://parraletz.space/blog/07-0-to-platform-eng-day7/)
+- [Day 0: Introduction - What’s Platform Engineering?](https://parraletz.space/blog/00-0-to-platform-eng-intro/)
+- [Day 1: Introduction to the CNCF Landscape](https://parraletz.space/blog/01-0-to-platform-eng-day1/)
+- [Day 2: Day 2: Containers and Docker - The Building Blocks of Cloud Native](https://parraletz.space/blog/02-0-to-platform-eng-day2/)
+- [Day 3: Containers and Kubernetes - The Building Blocks of Cloud Native](https://parraletz.space/blog/03-0-to-platform-eng-day3/)
+- [Day 4: Deployments and Scaling in Kubernetes - Let's Get Practical](https://parraletz.space/blog/03-0-to-platform-eng-day3/)
+- [Day 5: Kubernetes Services – Connecting Your Applications](https://parraletz.space/blog/05-0-to-platform-eng-day5/)
+- [Day 6: ConfigMaps and Secrets – Managing Configurations in Kubernetes](https://parraletz.space/blog/06-0-to-platform-eng-day6/)
+- [Day 7: Recap and Hands-On Challenges for Week 1 ](https://parraletz.space/blog/07-0-to-platform-eng-day7/)
 
- 
 👉 Bookmark this blog and check back every day for new posts in the series.
 📣 Share your progress on social media with the hashtag #ZeroToPlatformEngineer to connect with other readers!
