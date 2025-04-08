@@ -25,3 +25,6 @@ pnpm-debug.log*
 
 .codegpt
 src/content/blog/bienvenidos-al-blog-bilingue.md
+
+# Test files
+src/content/blog/test-folder/

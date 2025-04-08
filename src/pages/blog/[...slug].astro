@@ -23,34 +23,47 @@ export async function getStaticPaths() {
   const postCount = englishPosts.length
 
   // Crear rutas para posts en inglés
-  const englishRoutes = englishPosts.map((post, index) => ({
-    params: { slug: post.slug },
-    props: {
-      post,
-      prevPost: index + 1 !== postCount ? englishPosts[index + 1] : null,
-      nextPost: index !== 0 ? englishPosts[index - 1] : null,
-      shouldRedirect: false
+  const englishRoutes = englishPosts.map((post, index) => {
+    // Si el slug contiene '/', significa que está en una subcarpeta
+    const slugParts = post.slug.split('/')
+    const slug = slugParts.length > 1 ? slugParts.join('/') : post.slug
+
+    return {
+      params: { slug },
+      props: {
+        post,
+        prevPost: index + 1 !== postCount ? englishPosts[index + 1] : null,
+        nextPost: index !== 0 ? englishPosts[index - 1] : null,
+        shouldRedirect: false
+      }
     }
-  }))
+  })
 
   // Crear rutas para redirecciones de posts en español
-  const redirectRoutes = spanishPosts.map(post => ({
-    params: { slug: post.slug },
-    props: {
-      post,
-      shouldRedirect: true,
-      redirectUrl: `/es/blog/${post.slug}/`,
-      postTitle: post.data.title
+  const redirectRoutes = spanishPosts.map(post => {
+    // Si el slug contiene '/', significa que está en una subcarpeta
+    const slugParts = post.slug.split('/')
+    const slug = slugParts.length > 1 ? slugParts.join('/') : post.slug
+
+    return {
+      params: { slug },
+      props: {
+        post,
+        shouldRedirect: true,
+        redirectUrl: `/es/blog/${post.slug}/`,
+        postTitle: post.data.title
+      }
     }
-  }))
+  })
 
   return [...englishRoutes, ...redirectRoutes]
 }
 
-type Props = {
-  post: CollectionEntry<'blog'>
-  prevPost?: CollectionEntry<'blog'>
-  nextPost?: CollectionEntry<'blog'>
+// Definir los tipos sin usar la sintaxis de fragmentos
+interface Props {
+  post: any
+  prevPost?: any
+  nextPost?: any
   shouldRedirect?: boolean
   redirectUrl?: string
   postTitle?: string
@@ -98,7 +111,6 @@ if (shouldRedirect && redirectUrl) {
       <body></body>
     </html>
   `
-
   return new Response(htmlContent, {
     status: 200,
     headers: {
@@ -107,23 +119,19 @@ if (shouldRedirect && redirectUrl) {
   })
 }
 
-const {
-  title,
-  publishDate,
-  updatedDate,
-  excerpt,
-  isFeatured,
-  tags = [],
-  seo
-} = post.data
 const { Content } = await post.render()
+const { title, description, image, publishDate, tags } = post.data
+const formattedDate = new Date(publishDate).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+})
 ---
 
 <BaseLayout
-  title={seo?.title ?? title}
-  description={seo?.description ?? excerpt}
-  image={seo?.image}
-  pageType='article'
+  title={title}
+  description={description}
+  image={image}
   showHeader={false}
 >
   <article class='mb-16 sm:mb-24'>
@@ -133,16 +141,22 @@ const { Content } = await post.render()
       >
         {title}
       </h1>
-      <div class='mt-4 text-sm'>
+      <div
+        class='flex items-center gap-4 mt-4 text-sm text-gray-500 dark:text-gray-400'
+      >
         <FormattedDate date={publishDate} />
         {
-          updatedDate && (
-            <>
-              {' '}
-              <span>
-                (Updated on <FormattedDate date={updatedDate} />)
-              </span>
-            </>
+          tags && (
+            <div class='flex items-center gap-2'>
+              {tags.map((tag: string) => (
+                <a
+                  href={`/tags/${slugify(tag)}`}
+                  class='px-2 py-1 text-xs font-medium text-gray-600 bg-gray-100 rounded-full dark:text-gray-300 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700'
+                >
+                  {tag}
+                </a>
+              ))}
+            </div>
           )
         }
       </div>
@@ -150,81 +164,35 @@ const { Content } = await post.render()
     <div class='max-w-none prose prose-dante sm:prose-lg'>
       <Content />
     </div>
-    <div
-      class='mt-8 flex flex-wrap items-center gap-6 text-sm justify-between sm:mt-12 sm:text-base'
-    >
+    <div class='mt-16 flex items-center justify-between'>
       {
-        tags.length > 0 && (
-          <div class='flex flex-wrap gap-x-5 gap-y-1 text-sm'>
-            {tags.map(tag => (
-              <a
-                class='text-main hover:underline'
-                href={`/tags/${slugify(tag)}`}
-              >
-                #{tag}
-              </a>
-            ))}
-          </div>
+        prevPost && (
+          <a
+            href={`/blog/${prevPost.slug}/`}
+            class='group flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white'
+          >
+            <span class='transition-transform group-hover:-translate-x-1'>
+              ←
+            </span>
+            <span>{prevPost.data.title}</span>
+          </a>
         )
       }
-      <Button
-        class='copy-url-button'
-        aria-label='Copy link'
-        data-url={href}
-        data-tooltip-default='Copy link'
-        data-tooltip-success='Copied'>Share</Button
-      >
+      {
+        nextPost && (
+          <a
+            href={`/blog/${nextPost.slug}/`}
+            class='group ml-auto flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white'
+          >
+            <span>{nextPost.data.title}</span>
+            <span class='transition-transform group-hover:translate-x-1'>
+              →
+            </span>
+          </a>
+        )
+      }
     </div>
   </article>
-
-  {isFeatured && <PostComments />}
-
-  {
-    (prevPost || nextPost) && (
-      <div class='my-16 sm:my-24'>
-        <h2 class='mb-12 text-xl font-serif italic sm:mb-16 sm:text-2xl'>
-          Read Next
-        </h2>
-        {nextPost && (
-          <PostPreview
-            post={nextPost}
-            class='mb-10 sm:mb-12'
-            headingLevel='h3'
-          />
-        )}
-        {prevPost && (
-          <PostPreview
-            post={prevPost}
-            class='mb-10 sm:mb-12'
-            headingLevel='h3'
-          />
-        )}
-      </div>
-    )
-  }
+  <PostComments />
   <Subscribe class='my-16 sm:my-24' />
 </BaseLayout>
-
-<script>
-  document.addEventListener('astro:page-load', () => {
-    const copyUrlButton = document.querySelector(
-      '.copy-url-button'
-    ) as HTMLButtonElement
-    copyUrlButton?.addEventListener('click', async () => {
-      await copyUrl(copyUrlButton)
-    })
-
-    async function copyUrl(button: HTMLButtonElement) {
-      let url = button.getAttribute('data-url') || ''
-      let label = button.innerText
-
-      await navigator.clipboard.writeText(url)
-
-      button.innerText = 'Copied'
-
-      setTimeout(() => {
-        button.innerText = label
-      }, 2500)
-    }
-  })
-</script>

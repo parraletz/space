@@ -1,0 +1,126 @@
+---
+import { type CollectionEntry, getCollection } from 'astro:content'
+import BaseLayout from '../../../layouts/BaseLayout.astro'
+import Button from '../../../components/Button.astro'
+import FormattedDate from '../../../components/FormattedDate.astro'
+import PostPreview from '../../../components/PostPreview.astro'
+import Subscribe from '../../../components/Subscribe.astro'
+import { sortItemsByDateDesc } from '../../../utils/data-utils'
+import { slugify } from '../../../utils/common-utils'
+import PostComments from '../../../components/PostComments.astro'
+import { getCurrentLanguage, useTranslations } from '../../../i18n/utils'
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('blog')
+
+  // Filtrar solo los posts en español
+  const spanishPosts = allPosts
+    .filter(post => post.data.language === 'es')
+    .sort(sortItemsByDateDesc)
+
+  const postCount = spanishPosts.length
+
+  // Crear rutas para posts en español
+  return spanishPosts.map((post, index) => {
+    // Si el slug contiene '/', significa que está en una subcarpeta
+    const slugParts = post.slug.split('/')
+    const slug = slugParts.length > 1 ? slugParts.join('/') : post.slug
+
+    return {
+      params: { slug },
+      props: {
+        post,
+        prevPost: index + 1 !== postCount ? spanishPosts[index + 1] : null,
+        nextPost: index !== 0 ? spanishPosts[index - 1] : null
+      }
+    }
+  })
+}
+
+interface Props {
+  post: any
+  prevPost?: any
+  nextPost?: any
+}
+
+const { href } = Astro.url
+const { post, prevPost, nextPost } = Astro.props
+
+const { Content } = await post.render()
+const { title, description, image, publishDate, tags } = post.data
+const formattedDate = new Date(publishDate).toLocaleDateString('es-ES', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric'
+})
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  image={image}
+  showHeader={false}
+>
+  <article class='mb-16 sm:mb-24'>
+    <header class='mb-8'>
+      <h1
+        class='text-3xl leading-tight font-serif font-medium sm:text-5xl sm:leading-tight'
+      >
+        {title}
+      </h1>
+      <div
+        class='flex items-center gap-4 mt-4 text-sm text-gray-500 dark:text-gray-400'
+      >
+        <FormattedDate date={publishDate} />
+        {
+          tags && (
+            <div class='flex items-center gap-2'>
+              {tags.map((tag: string) => (
+                <a
+                  href={`/es/tags/${slugify(tag)}`}
+                  class='px-2 py-1 text-xs font-medium text-gray-600 bg-gray-100 rounded-full dark:text-gray-300 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700'
+                >
+                  {tag}
+                </a>
+              ))}
+            </div>
+          )
+        }
+      </div>
+    </header>
+    <div class='max-w-none prose prose-dante sm:prose-lg'>
+      <Content />
+    </div>
+    <div class='mt-16 flex items-center justify-between'>
+      {
+        prevPost && (
+          <a
+            href={`/es/blog/${prevPost.slug}/`}
+            class='group flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white'
+          >
+            <span class='transition-transform group-hover:-translate-x-1'>
+              ←
+            </span>
+            <span>{prevPost.data.title}</span>
+          </a>
+        )
+      }
+      {
+        nextPost && (
+          <a
+            href={`/es/blog/${nextPost.slug}/`}
+            class='group ml-auto flex items-center gap-2 text-sm font-medium text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white'
+          >
+            <span>{nextPost.data.title}</span>
+            <span class='transition-transform group-hover:translate-x-1'>
+              →
+            </span>
+          </a>
+        )
+      }
+    </div>
+  </article>
+  <PostComments />
+  <Subscribe class='my-16 sm:my-24' />
+</BaseLayout>
+
