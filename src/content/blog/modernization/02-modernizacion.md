@@ -8,7 +8,7 @@ tags:
   - platform-engineering
   - aws-community-builder
   - spanish
-isFeatured: true
+commentsEnabled: true
 seo:
   image:
     src: '/modernization/02.png'

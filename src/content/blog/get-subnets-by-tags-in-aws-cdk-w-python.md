@@ -6,7 +6,8 @@ tags:
   - AWS
   - CDK
   - Python
-  - Devops  
+  - Devops
+commentsEnabled: true
 seo:
   image:
     src: '/post-1.webp'
@@ -20,8 +21,6 @@ Infrastructure as code is not something new for me, I have experience with terra
 As you read in the title I opted for python as language to write code with AWS CDK.
 
 Here we go!
-
-
 
 ## Requirements
 
@@ -71,7 +70,6 @@ def get_subnets(tag_value, vpc):
 
 After that, we have to integrate it with AWS CDK, for that we will use the following snippet to get the subnets with tag **“Tier”** and value **“Public”**:
 
-
 ```python
 from aws_cdk import (
     # Duration,
@@ -91,7 +89,7 @@ class CdkAppSample(Stack):
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
         super().__init__(scope, construct_id, **kwargs)
 
-        ... 
+        ...
         vpc = ec2.Vpc.from_lookup(
             self, "VPC", vpc_id=vpc_id)
 

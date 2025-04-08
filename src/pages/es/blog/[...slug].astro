@@ -53,6 +53,9 @@ const formattedDate = new Date(publishDate).toLocaleDateString('es-ES', {
   month: 'long',
   day: 'numeric'
 })
+
+// Debug: Imprimir los datos del post en la consola
+console.log('Post data (ES):', JSON.stringify(post.data, null, 2))
 ---
 
 <BaseLayout
@@ -120,7 +123,12 @@ const formattedDate = new Date(publishDate).toLocaleDateString('es-ES', {
       }
     </div>
   </article>
-  <PostComments />
+  {
+    post.data.commentsEnabled && (
+      <>
+        <PostComments />
+      </>
+    )
+  }
   <Subscribe class='my-16 sm:my-24' />
 </BaseLayout>
-

@@ -6,7 +6,8 @@ tags:
   - AWS
   - Devops
   - devopd
-  - devcontainers 
+  - devcontainers
+commentsEnabled: true
 seo:
   image:
     src: '/post-2.webp'
@@ -19,11 +20,10 @@ However, what happens when we want to take this to a higher, collaborative level
 
 At this point, devpod.sh becomes an essential tool. Next, I will explain how you can deploy a devcontainer in your EKS cluster using devpod.
 
-
 ### Prerequisites
 
-* Have an AWS EKS Cluster configured.
-* Have access to your AWS EKS cluster.
+- Have an AWS EKS Cluster configured.
+- Have access to your AWS EKS cluster.
 
 ### Devpod Installation
 
@@ -39,18 +39,18 @@ version: v0.1.2
 icon: https://devpod.sh/assets/kubernetes.svg
 home: https://github.com/occmundial/ppr-samples
 description: |-
-  DevPod on Kubernetes 
+  DevPod on Kubernetes
 optionGroups:
   - options:
       - KUBERNETES_NAMESPACE
       - DISK_SIZE
-    name: "Options"
+    name: 'Options'
     defaultVisible: true
   - options:
       - KUBERNETES_CONTEXT
       - KUBERNETES_CONFIG
       - POD_MANIFEST_TEMPLATE
-    name: "Kubernetes Config"
+    name: 'Kubernetes Config'
   - options:
       - CLUSTER_ROLE
       - SERVICE_ACCOUNT
@@ -67,7 +67,7 @@ optionGroups:
       - LABELS
       - DOCKERLESS_DISABLED
       - DOCKERLESS_IMAGE
-    name: "Advanced Options"
+    name: 'Advanced Options'
 options:
   INJECT_GIT_CREDENTIALS:
     default: true
@@ -84,7 +84,7 @@ options:
     default: /Users/jparra/.kube/ubbe
   KUBERNETES_PULL_SECRETS_ENABLED:
     description: If true, DevPod will try to use the pull secrets from the current context.
-    default: "true"
+    default: 'true'
     type: boolean
     global: true
   KUBERNETES_NAMESPACE:
@@ -97,7 +97,7 @@ options:
       echo $NAMESPACE
   CREATE_NAMESPACE:
     description: If true, DevPod will try to create the namespace.
-    default: "true"
+    default: 'true'
     type: boolean
     global: true
   CLUSTER_ROLE:
@@ -117,7 +117,7 @@ options:
     default: kubectl
     global: true
   INACTIVITY_TIMEOUT:
-    description: "If defined, will automatically stop the pod after the inactivity period. Examples: 10m, 1h"
+    description: 'If defined, will automatically stop the pod after the inactivity period. Examples: 10m, 1h'
   STORAGE_CLASS:
     description: If defined, DevPod will use the given storage class to create the persistent volume claim. You will need to ensure the storage class exists in your cluster!
     global: true
@@ -147,7 +147,7 @@ options:
   DOCKERLESS_DISABLED:
     description: If dockerless should be disabled. Dockerless is the way DevPod uses to build images directly within Kubernetes. If dockerless is disabled and no image is specified, DevPod will fail instead.
     global: true
-    default: "false"
+    default: 'false'
 agent:
   containerInactivityTimeout: ${INACTIVITY_TIMEOUT}
   local: true
@@ -192,10 +192,10 @@ exec:
 
 Inside that file, I want you to pay attention to **INJECT_GIT_CREDENTIALS**, **KUBERNETES_CONTEXT**, **KUBERNETES_CONFIG**, and **POD_MANIFEST_TEMPLATE**, where:
 
-* **INJECT_GIT_CREDENTIALS**: Injects the local git credentials.
-* **KUBERNETES_CONTEXT**: Configure the context you are using. Even if you only use the default, I recommend configuring the context name with kubectl config get-contexts.
-* **KUBERNETES_CONFIG**: The path to the Kubernetes configuration file. For some, like me, it's preferable to have a file per cluster (a matter of preference), but I still recommend this configuration.
-* **POD_MANIFEST_TEMPLATE**: Going to the next level means you can also customize the pod deployed in your cluster. In my case, as I use Karpenter, I have some formerly called provisioners with specific computing specifications. Here is an example of that configuration:
+- **INJECT_GIT_CREDENTIALS**: Injects the local git credentials.
+- **KUBERNETES_CONTEXT**: Configure the context you are using. Even if you only use the default, I recommend configuring the context name with kubectl config get-contexts.
+- **KUBERNETES_CONFIG**: The path to the Kubernetes configuration file. For some, like me, it's preferable to have a file per cluster (a matter of preference), but I still recommend this configuration.
+- **POD_MANIFEST_TEMPLATE**: Going to the next level means you can also customize the pod deployed in your cluster. In my case, as I use Karpenter, I have some formerly called provisioners with specific computing specifications. Here is an example of that configuration:
 
 ```yaml
 apiVersion: v1
@@ -205,10 +205,10 @@ metadata:
   name: devpod-ppr-
 spec:
   tolerations:
-    - key: "dedicated"
-      operator: "Equal"
-      effect: "NoSchedule"
-      value: "devpod"
+    - key: 'dedicated'
+      operator: 'Equal'
+      effect: 'NoSchedule'
+      value: 'devpod'
   affinity:
     nodeAffinity:
       requiredDuringSchedulingIgnoredDuringExecution:
@@ -236,7 +236,7 @@ We create the provider.
 devpod provider add devpod-manifests/provider-k8s/provider.yaml
 ```
 
-Confirm that it was added correctly with the command ``` devpod provider list ```.
+Confirm that it was added correctly with the command `devpod provider list`.
 
 ```bash
             NAME          | VERSION | DEFAULT | INITIALIZED |      DESCRIPTION
@@ -244,10 +244,9 @@ Confirm that it was added correctly with the command ``` devpod provider list ``
     kubernetes-ppr-single | v0.1.2  | true    | true        | DevPod on Kubernetes
 ```
 
-
 We create our workspace
 
-```bash 
+```bash
 devpod up git@github.com:parraletz/service-example.git --id service-test --provider kubernetes-ppr-single --devcontainer-path .devcontainer/devcontainer.json  --debug
 ```
 
@@ -256,5 +255,6 @@ Excellent! We now have our devpod running within our EKS cluster.
 Happy coding!!!
 
 ### References:
-* [devpod](https://devpod.sh)
-* [Github Manifest](https://github.com/parraletz/devpod-manifests)
+
+- [devpod](https://devpod.sh)
+- [Github Manifest](https://github.com/parraletz/devpod-manifests)

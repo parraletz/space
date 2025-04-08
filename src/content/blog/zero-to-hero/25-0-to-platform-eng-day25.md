@@ -17,7 +17,7 @@ seo:
   image:
     src: '/post-25.webp'
 
-isFeatured: true
+commentsEnabled: true
 ---
 
 Welcome to Day 25 of the Zero to Platform Engineer in 30 Days challenge! 🚀 Today, we’ll cover canary deployments and feature flags, two essential techniques for safe, controlled software rollouts in Kubernetes.

@@ -14,7 +14,7 @@ seo:
   image:
     src: '/post-10.webp'
 
-isFeatured: true
+commentsEnabled: true
 ---
 
 Welcome to Day 10 of the Zero to Platform Engineer in 30 Days challenge! 🚀 Today, we’ll explore how to combine Helm and Terraform, two powerful tools, to simplify the deployment and management of Kubernetes applications.
@@ -25,10 +25,7 @@ By the end of this session, you’ll understand:
 - How Terraform can manage Helm Charts programmatically.
 - Practical steps to deploy and manage applications with Helm and Terraform.
 
-
-
 ## What Is Helm?
-
 
 Helm is a package manager for Kubernetes that helps you deploy applications using pre-configured templates called Charts.
 
@@ -53,12 +50,12 @@ Terraform’s Helm Provider enables you to:
 
 1. Install the Helm CLI on your machine, following the official [installation guide](https://helm.sh/docs/intro/install/).
 2. Verify the installation:
+
 ```bash
 helm version
 ```
 
 #### Step 2: Set Up the Terraform Helm Provider
-
 
 1. Add the Helm provider to your Terraform configuration:
 
@@ -77,7 +74,6 @@ terraform init
 ```
 
 #### Step 3: Deploy a Helm Chart Using Terraform
-
 
 1. Create a Terraform configuration file:
 
@@ -161,20 +157,13 @@ helm rollback nginx 1
 2. Customize the Chart with parameters like replica counts, ports, or environment variables.
 3. Experiment with upgrades and rollbacks.
 
-
-
-
 ## What’s Next?
 
 Tomorrow, we’ll explore GitOps with ArgoCD, diving into how you can manage Kubernetes clusters declaratively using Git as the source of truth.
 
-
-
-
 👉 Check it out here: [Zero to Platform Engineer Repository](https://github.com/parraletz/zero-to-platform-engineer)
 
 Feel free to clone the repo, experiment with the code, and even contribute if you'd like! 🚀
-
 
 ## Follow the Series!
 
@@ -182,17 +171,16 @@ Feel free to clone the repo, experiment with the code, and even contribute if yo
 
 This post is just the beginning. Here's what we've covered so far and what's coming up next:
 
-* [Day 0: Introduction - What’s Platform Engineering?](https://parraletz.space/blog/00-0-to-platform-eng-intro/)
-* [Day 1: Introduction to the CNCF Landscape](https://parraletz.space/blog/01-0-to-platform-eng-day1/)
-* [Day 2: Day 2: Containers and Docker - The Building Blocks of Cloud Native](https://parraletz.space/blog/02-0-to-platform-eng-day2/)
-* [Day 3: Containers and Kubernetes - The Building Blocks of Cloud Native](https://parraletz.space/blog/03-0-to-platform-eng-day3/)
-* [Day 4: Deployments and Scaling in Kubernetes - Let's Get Practical](https://parraletz.space/blog/03-0-to-platform-eng-day3/)
-* [Day 5: Kubernetes Services – Connecting Your Applications](https://parraletz.space/blog/05-0-to-platform-eng-day5/)
-* [Day 6: ConfigMaps and Secrets – Managing Configurations in Kubernetes](https://parraletz.space/blog/06-0-to-platform-eng-day6/)
-* [Day 7: Recap and Hands-On Challenges for Week 1](https://parraletz.space/blog/07-0-to-platform-eng-day7/)
-* [Day 8: Introduction to Infrastructure as Code (IaC)](https://parraletz.space/blog/08-0-to-platform-eng-day8/)
-* [Day 9: Advanced Terraform – Managing Kubernetes Resources](https://parraletz.space/blog/09-0-to-platform-eng-day9/)
+- [Day 0: Introduction - What’s Platform Engineering?](https://parraletz.space/blog/00-0-to-platform-eng-intro/)
+- [Day 1: Introduction to the CNCF Landscape](https://parraletz.space/blog/01-0-to-platform-eng-day1/)
+- [Day 2: Day 2: Containers and Docker - The Building Blocks of Cloud Native](https://parraletz.space/blog/02-0-to-platform-eng-day2/)
+- [Day 3: Containers and Kubernetes - The Building Blocks of Cloud Native](https://parraletz.space/blog/03-0-to-platform-eng-day3/)
+- [Day 4: Deployments and Scaling in Kubernetes - Let's Get Practical](https://parraletz.space/blog/03-0-to-platform-eng-day3/)
+- [Day 5: Kubernetes Services – Connecting Your Applications](https://parraletz.space/blog/05-0-to-platform-eng-day5/)
+- [Day 6: ConfigMaps and Secrets – Managing Configurations in Kubernetes](https://parraletz.space/blog/06-0-to-platform-eng-day6/)
+- [Day 7: Recap and Hands-On Challenges for Week 1](https://parraletz.space/blog/07-0-to-platform-eng-day7/)
+- [Day 8: Introduction to Infrastructure as Code (IaC)](https://parraletz.space/blog/08-0-to-platform-eng-day8/)
+- [Day 9: Advanced Terraform – Managing Kubernetes Resources](https://parraletz.space/blog/09-0-to-platform-eng-day9/)
 
- 
 👉 Bookmark this blog and check back every day for new posts in the series.
 📣 Share your progress on social media with the hashtag #ZeroToPlatformEngineer to connect with other readers!
