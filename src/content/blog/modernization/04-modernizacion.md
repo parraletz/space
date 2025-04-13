@@ -1,6 +1,6 @@
 ---
 title: "Reflexion: La modernización no empieza con tecnología, empieza con criterio"
-excerpt: 'Modernizar no es solo tecnología. Es colaboración, criterio y humildad técnica. Reflexiones reales desde la trinchera de plataforma'.
+excerpt: 'Modernizar no es solo tecnología. Es colaboración, criterio y humildad técnica. Reflexiones reales desde la trinchera de plataforma.'
 publishDate: '2025-04-12'
 language: 'es'
 tags:
