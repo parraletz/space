@@ -27,7 +27,7 @@
     "@tailwindcss/typography": "^0.5.16",
     "prettier": "^3.6.1",
     "prettier-plugin-tailwindcss": "^0.6.13",
-    "wrangler": "^4.21.1"
+    "wrangler": "^4.21.2"
   },
   "packageManager": "pnpm@10.8.0"
 }
